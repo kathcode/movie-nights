@@ -1,0 +1,17 @@
+@import '../../assets/styles/colors.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+.line {
+  border-bottom: 4px dotted $secondary100;
+}
+
+.home-title {
+  font-size: 30px;
+  text-align: center;
+  @include media-breakpoint-up(md) {
+    font-size: 60px;
+    text-align: left;
+  }
+}
