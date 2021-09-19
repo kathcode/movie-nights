@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { getGenres, getLatest, getTrending, filterByGenre } from '../../services/movies';
-import Header from "../../components/Header"
 import Filters from '../../components/Filters';
 import Banner from '../../components/Banner';
 import Card from '../../components/Card';
@@ -76,8 +75,7 @@ const Home = () => {
   }
 
   return (
-    <>
-      <Header />
+    <div className="container">
       <h1 className="mt-5 line pb-4 mb-5 home-title">What’s your favorite Movie?</h1>
       {genres.length > 0 &&
         <Filters
@@ -118,7 +116,7 @@ const Home = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
