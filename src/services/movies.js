@@ -12,9 +12,20 @@ export const getGenres = async () => {
   }
 }
 
-export const getPopular = async(page) => {
+export const getTrending = async(page) => {
   try {
-    const request = await fetch(`${baseUrl}/movie/popular?api_key=${apiKey}&language=en-US&page=${page}`);
+    const request = await fetch(`${baseUrl}/trending/all/day?api_key=${apiKey}`);
+    const data = request.json();
+  
+    return data;
+  } catch (error) {
+    throw(error)
+  }
+}
+
+export const filterByGenre = async(genre) => {
+  try {
+    const request = await fetch(`${baseUrl}/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=1&with_genres=${genre}`);
     const data = request.json();
   
     return data;

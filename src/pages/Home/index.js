@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { getGenres, getLatest, getPopular } from '../../services/movies';
+import { getGenres, getLatest, getTrending, filterByGenre } from '../../services/movies';
 import Header from "../../components/Header"
 import Filters from '../../components/Filters';
 import Banner from '../../components/Banner';
@@ -12,12 +12,12 @@ const Home = () => {
   const [genres, setGenres] = useState([]);
   const [genreSelected, setGenreSelected] = useState('all');
   const [latest, setLatest] = useState();
-  const [popular, setPopular] = useState([]);
+  const [trending, setTrending] = useState([]);
 
   useEffect(() => {
     loadGenres();
     loadLatest();
-    loadPopular();
+    loadTrending();
   }, []);
 
   const loadGenres = async() => {
@@ -36,10 +36,10 @@ const Home = () => {
     }
   }
 
-  const loadPopular = async () => {
-    const { results } = await getPopular();
+  const loadTrending = async () => {
+    const { results } = await getTrending();
     if (results.length) {
-      setPopular(results);
+      setTrending(results);
     }
   }
 
@@ -53,14 +53,20 @@ const Home = () => {
   }
 
   const getPopularGenres = (genreIds) => {
-    return genres.filter(gen => genreIds.includes(gen.id));
+    return trending.filter(gen => genreIds.includes(gen.id));
   }
 
-  const handleOnSelectFilter = (filter) => {
-    const result = popular.filter(fil => filter === fil.id);
-    setGenreSelected(filter);
-    setPopular(result);
-    console.log(result)
+  const getMoviesFiltered = async(genreIds) => {
+    if (genreIds !== 'all') {
+      const { results } = await filterByGenre(genreIds);
+      if (results.length) {
+        setTrending(results);
+      }
+    } else {
+      loadTrending();
+    }
+
+    setGenreSelected(genreIds);
   }
 
   return (
@@ -72,7 +78,7 @@ const Home = () => {
           filterLabel="Filter by Movie Genre"
           filterList={genres}
           currentSelected={genreSelected}
-          onSelected={handleOnSelectFilter}
+          onSelected={getMoviesFiltered}
         />
       }
 
@@ -88,8 +94,8 @@ const Home = () => {
       }
 
       <div className="row mt-4">
-        {popular.length > 0 &&
-          popular.map(movie => (
+        {trending.length > 0 &&
+          trending.map(movie => (
           <Card
             key={movie.id}
             title={movie.title}
