@@ -1,0 +1,36 @@
+@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/mixins.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+.banner {
+  .description {
+    background-color: $secondary100;
+    padding: 10px;
+
+    @include media-breakpoint-up(md) {
+      padding: 80px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .title {
+    color: $primary000;
+    font-size: 42px;
+    font-weight: 800;
+  }
+
+  .banner-button {
+    @include buttonPrimary;
+    border-radius: 25px;
+    padding: 10px 20px;
+  }
+
+  .banner-image {
+    width: 100%;
+  }
+}

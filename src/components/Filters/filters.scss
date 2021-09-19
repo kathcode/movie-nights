@@ -1,0 +1,20 @@
+@import '../../assets/styles/colors.scss';
+
+.chip {
+  border-radius: 15px;
+  border: none;
+  margin: 5px;
+  background-color: $secondary200;
+  padding: 4px 13px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chip:hover, .active {
+  @extend .chip;
+  background-color: $secondary100;
+}
+
+.label-filter {
+  font-weight: 600;
+}

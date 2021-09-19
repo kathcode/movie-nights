@@ -1,0 +1,13 @@
+@import '../../assets/styles/mixins.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins/_breakpoints';
+
+header {
+  @include title;
+  justify-content: center;
+
+  @include media-breakpoint-up(md) {
+    justify-content: start;
+  }
+}
