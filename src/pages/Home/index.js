@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import dateFormat from 'dateformat';
 
 import { getGenres, getLatest, getTrending, filterByGenre } from '../../services/movies';
 import Filters from '../../components/Filters';
@@ -51,8 +52,8 @@ const Home = () => {
   const getDate = (date) => {
     let formattedDate = date;
     if (date) {
-      const dateTime = new Date(date).getTime();
-      formattedDate = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium'}).format(dateTime);
+      const dateTime = new Date(date);
+      formattedDate = dateFormat(dateTime, 'mmm d, yyyy')
     }
     return formattedDate;
   }
