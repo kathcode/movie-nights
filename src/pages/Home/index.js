@@ -5,6 +5,7 @@ import Header from "../../components/Header"
 import Filters from '../../components/Filters';
 import Banner from '../../components/Banner';
 import Card from '../../components/Card';
+import Spinner from '../../components/Spinner'
 import './home.scss';
 
 const Home = () => {
@@ -13,6 +14,8 @@ const Home = () => {
   const [genreSelected, setGenreSelected] = useState('all');
   const [latest, setLatest] = useState();
   const [trending, setTrending] = useState([]);
+  const [isTrendingLoading, setIsTrendingLoading] = useState(false);
+  const [isLatestLoading, setIsLatestLoading] = useState(false);
 
   useEffect(() => {
     loadGenres();
@@ -29,17 +32,20 @@ const Home = () => {
   }
 
   const loadLatest = async () => {
+    setIsLatestLoading(true);
     const latest = await getLatest();
     if (latest) {
       setLatest(latest);
-      console.log(latest)
+      setIsLatestLoading(false);
     }
   }
 
   const loadTrending = async () => {
+    setIsTrendingLoading(true);
     const { results } = await getTrending();
     if (results.length) {
       setTrending(results);
+      setIsTrendingLoading(false);
     }
   }
 
@@ -82,7 +88,10 @@ const Home = () => {
         />
       }
 
-      {latest && genreSelected === 'all' &&
+      {isLatestLoading && <Spinner />}
+      {latest &&
+        genreSelected === 'all' &&
+        !isLatestLoading &&
         <Banner
           title={latest.title}
           date={getDate(latest.release_date)}
@@ -94,7 +103,9 @@ const Home = () => {
       }
 
       <div className="row mt-4">
+        {isTrendingLoading && <Spinner />}
         {trending.length > 0 &&
+          !isTrendingLoading &&
           trending.map(movie => (
           <Card
             key={movie.id}
