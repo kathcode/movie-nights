@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import Filters from '../Filters';
-import './card.scss';
 import imgLike from '../../assets/images/like.svg'
+import './card.scss';
 
 const Card = ({
   imgUrl,
@@ -24,6 +25,18 @@ const Card = ({
       </section>
     </article>
   )
+}
+
+Card.propTypes = {
+  imgUrl: PropTypes.string,
+  imgAlt: PropTypes.string,
+  genresList: PropTypes.arrayOf(PropTypes.objectOf({
+    id: PropTypes.string,
+    name: PropTypes.string
+  })),
+  date: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string
 }
 
 export default Card

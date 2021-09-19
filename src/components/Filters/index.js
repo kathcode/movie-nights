@@ -23,14 +23,19 @@ const Filters = ({
   )
 }
 
-Filters.defaultProps = {
+Filters.propTypes = {
   filterLabel: PropTypes.string,
   filterList: PropTypes.arrayOf(PropTypes.objectOf({
     id: PropTypes.string,
     name: PropTypes.string
   })),
-  onSelected: () => {},
+  onSelected: PropTypes.func,
   currentSelected: PropTypes.string
+}
+
+Filters.defaultProps = {
+  filterList: [],
+  onSelected: () => {}
 }
 
 export default Filters

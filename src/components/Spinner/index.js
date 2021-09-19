@@ -3,7 +3,7 @@ import './snipper.scss'
 const Spinner = () => {
   return (
     <div className="snipper-container">
-      <div class="spinner-border" role="status"></div>
+      <div className="spinner-border" role="status"></div>
     </div>
   )
 }

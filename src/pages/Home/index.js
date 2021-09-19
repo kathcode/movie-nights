@@ -58,8 +58,8 @@ const Home = () => {
     return formattedDate;
   }
 
-  const getPopularGenres = (genreIds) => {
-    return trending.filter(gen => genreIds.includes(gen.id));
+  const getTrendingGenres = (genreIds) => {
+    return genres.filter(gen => genreIds.includes(gen.id));
   }
 
   const getMoviesFiltered = async(genreIds) => {
@@ -112,7 +112,7 @@ const Home = () => {
             date={getDate(movie.release_date)}
             imgAlt={movie.title}
             imgUrl={`${imageBaseUrl}${movie.backdrop_path}`}
-            genresList={getPopularGenres(movie.genre_ids)}
+            genresList={getTrendingGenres(movie.genre_ids)}
             description={movie.overview}
           />
         ))}
