@@ -4,13 +4,44 @@
 
 footer {
   background-color: #000000;
-  flex-direction: column;
-  display: flex;
+  padding: 20px 0px 50px 0px;
   .container {
-    @include media-breakpoint-up(md) {
-      justify-content: space-between;
-      align-items: center;
+    text-align: center;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+
+    img, .footer-link, .copy-right {
+      margin: 10px 0px;
     }
+    
+    @include media-breakpoint-up(md) {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+
+      .logo-link {
+        flex-grow: 1;
+        display: flex;
+        justify-content: start;
+      }
+
+      img {
+        margin-right: 50px;
+        position: relative;
+        bottom: 13px;
+      }
+
+      .footer-logo img, a{
+        display: inline-block;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding: 20px;
   }
 
   .footer-logo img, a{

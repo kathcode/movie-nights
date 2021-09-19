@@ -3,16 +3,16 @@ import './footer.scss';
 
 const Footer = () => {
   return (
-    <footer className="p-4">
+    <footer>
       <div className="container">
-        <div className="footer-logo">
+        <div className="logo-link">
           <img
-            className="img-fluid me-5"
+            className="img-fluid"
             src="https://evolvingweb.ca/themes/custom/ewsite8/logo.svg"
             alt="Logo"
             width="200"
           />
-          <a className="footer-link ms-5" href="https://evolvingweb.ca/">
+          <a className="footer-link" href="https://evolvingweb.ca/">
             Back to evolvingweb.ca
             <img
               src={ExternalLink}
